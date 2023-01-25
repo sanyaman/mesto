@@ -3,7 +3,6 @@
   font-family: "Inter", Arial, sans-serif;
   display: flex;
 }
-
 .page {
   width: 1280px;
   min-width: 320px;
@@ -27,7 +26,6 @@
     padding-bottom: 31.6px;
   }
 }
-
 .header__logo {
   width: 142px;
   height: 33px;
@@ -55,7 +53,6 @@
     flex-direction: column;
   }
 }
-
 .profile__avatar {
   border-radius: 50%;
   width: 120px;
@@ -79,7 +76,6 @@
     margin-top: 26px;
   }
 }
-
 .profile__container {
   display: flex;
   flex-direction: column;
@@ -117,7 +113,6 @@
     padding-left: 25px;
   }
 }
-
 .profile__button_edit {
   height: 24px;
   width: 24px;
@@ -141,7 +136,6 @@
     margin-left: 10px;
   }
 }
-
 .profile__button_edit:hover {
   opacity: 0.6;
 }
@@ -165,16 +159,16 @@
     margin-top: 36px;
   }
 }
-
 .profile__button_add:hover {
   opacity: 0.6;
 }
+
 /* .elements */
+
 .elements {
   margin: 0 auto;
   display: flex;
 }
-
 .element-grid__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
@@ -197,7 +191,6 @@
     padding-bottom: 48px;
   }
 }
-
 .element-grid__info {
   display: flex;
   justify-content: space-between;
@@ -211,6 +204,7 @@
   border-radius: 10px 10px 0 0;
   width: 100%;
   display: block;
+  object-fit: cover;
 }
 .element-grid__item {
   background-color: #ffffff;
@@ -238,7 +232,6 @@
   background-image: url(./image/heart\ active.png);
   opacity: 10;
 }
-
 .element-grid__title {
   font-family: "Inter";
   font-style: normal;
@@ -251,6 +244,9 @@
   overflow: hidden;
   margin: 0;
 }
+
+/* footer */
+
 .footer {
   max-width: 880px;
   min-width: 282px;
@@ -280,7 +276,6 @@
     margin: 0 auto;
   }
 }
-
 @media screen and (max-width: 610px) {
   .footer__copyright {
     font-size: 14px;
@@ -291,7 +286,4 @@
   }
 }
 
-
-
 /* popup */
-
