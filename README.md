@@ -71,5 +71,5 @@
 
  
 
-© by Sanyaman
+:neckbeard: © by Sanyaman
  
