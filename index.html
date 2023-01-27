@@ -10,9 +10,24 @@
     <link rel="stylesheet" href="./style.css">
     <title>Место</title>
 </head>
+
 <body class="body">
     <div class="page">
-        <div class="popup"></div>
+        <div class="popup ">
+            <div class="popup__container">
+                <button class="popup__close" type="button" aria-label="Закрыть">
+                    <img class="popup__close-img" src="./image/Close Icon.png" alt="Закрыть">
+                </button>
+                <form class="popup__form" name="editing">
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <fieldset class="popup__field">
+                        <input class="popup__fill" type="text" id="title" name="title" required="" placeholder="Жак-Ив Кусто"></input>
+                        <input class="popup__fill" type="text" id="subtitle" name="subtitle" required="" placeholder="Исследователь океана"></input>
+                        <button class="popup__sumbit" type="button" aria-label="Сохранить">Сохранить</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
         <header class="header">
             <img src="./image/Vector.png" alt="место" class="header__logo">
         </header>
@@ -24,9 +39,9 @@
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
-                    <button class="profile__button_edit" type="button" aria-label="Изменить"></button>
+                    <button class="profile__button-edit" type="button" aria-label="Изменить"></button>
                 </div>
-                <button class="profile__button_add" type="button" aria-label="Добавить"></button>
+                <button class="profile__button-add" type="button" aria-label="Добавить"></button>
             </section>
             <section class="elements">
                 <ul class="element-grid__grid">
@@ -80,5 +95,5 @@
         </footer>
     </div>
 </body>
-</html>
 
+</html>
