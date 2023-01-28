@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     width: 282px;
-    border: rgb(124, 122, 117) 1px;
+    border: rgb(124, 122, 117) 1px; /* рамка - тк сливается фон с фоном картинки, что в этом случае предпринять ?))) */
     border-style: solid;
     border-radius: 10px;
   }
