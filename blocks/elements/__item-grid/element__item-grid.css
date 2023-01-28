@@ -1,0 +1,9 @@
+.element__item-grid {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 282px;
+    border: rgb(124, 122, 117) 1px;
+    border-style: solid;
+    border-radius: 10px;
+  }

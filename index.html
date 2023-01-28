@@ -5,29 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendor/normalize.css">
-    <link rel="stylesheet" href="./fonts/inter.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="pages/index.css">
     <title>Место</title>
 </head>
 
 <body class="body">
     <div class="page">
-        <div class="popup ">
-            <div class="popup__container">
-                <button class="popup__close" type="button" aria-label="Закрыть">
-                    <img class="popup__close-img" src="./image/Close Icon.png" alt="Закрыть">
-                </button>
-                <form class="popup__form" name="editing">
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    <fieldset class="popup__field">
-                        <input class="popup__fill" type="text" id="title" name="title" required="" placeholder="Жак-Ив Кусто"></input>
-                        <input class="popup__fill" type="text" id="subtitle" name="subtitle" required="" placeholder="Исследователь океана"></input>
-                        <button class="popup__sumbit" type="button" aria-label="Сохранить">Сохранить</button>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
         <header class="header">
             <img src="./image/Vector.png" alt="место" class="header__logo">
         </header>
@@ -44,47 +27,47 @@
                 <button class="profile__button-add" type="button" aria-label="Добавить"></button>
             </section>
             <section class="elements">
-                <ul class="element-grid__grid">
-                    <li class="element-grid__item">
-                        <img src="./image/1.jpg" alt="" class="element-grid__image">
-                        <div class="element-grid__info">
-                            <h2 class="element-grid__title">Жёлтая Зебрасома</h2>
-                            <button class="element-buttone__like" type="button" aria-label="лайк"></button>
+                <ul class="element__grid">
+                    <li class="element__item-grid">
+                        <img src="./image/1.jpg" alt="фото один" class="element__image-grid">
+                        <div class="element__info-grid">
+                            <h2 class="element__title-grid">Жёлтая Зебрасома</h2>
+                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
                     </li>
-                    <li class="element-grid__item">
-                        <img src="./image/4.jpg" alt="" class="element-grid__image">
-                        <div class="element-grid__info">
-                            <h2 class="element-grid__title">Ангел Кольчатый</h2>
-                            <button class="element-buttone__like" type="button" aria-label="лайк"></button>
+                    <li class="element__item-grid">
+                        <img src="./image/4.jpg" alt="фото два" class="element__image-grid">
+                        <div class="element__info-grid">
+                            <h2 class="element__title-grid">Ангел Кольчатый</h2>
+                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
                     </li>
-                    <li class="element-grid__item">
-                        <img src="./image/3.jpg" alt="" class="element-grid__image">
-                        <div class="element-grid__info">
-                            <h2 class="element-grid__title">Бабочка Пинцет</h2>
-                            <button class="element-buttone__like" type="button" aria-label="лайк"></button>
+                    <li class="element__item-grid">
+                        <img src="./image/3.jpg" alt="фото три" class="element__image-grid">
+                        <div class="element__info-grid">
+                            <h2 class="element__title-grid">Бабочка Пинцет</h2>
+                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
                     </li>
-                    <li class="element-grid__item">
-                        <img src="./image/7.jpg" alt="" class="element-grid__image">
-                        <div class="element-grid__info">
-                            <h2 class="element-grid__title">Губан лавандовый</h2>
-                            <button class="element-buttone__like" type="button" aria-label="лайк"></button>
+                    <li class="element__item-grid">
+                        <img src="./image/7.jpg" alt="фото четыре" class="element__image-grid">
+                        <div class="element__info-grid">
+                            <h2 class="element__title-grid">Губан лавандовый</h2>
+                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
                     </li>
-                    <li class="element-grid__item">
-                        <img src="./image/2.jpg" alt="" class="element-grid__image">
-                        <div class="element-grid__info">
-                            <h2 class="element-grid__title">Бабочка Масковая</h2>
-                            <button class="element-buttone__like" type="button" aria-label="лайк"></button>
+                    <li class="element__item-grid">
+                        <img src="./image/2.jpg" alt="фото пять" class="element__image-grid">
+                        <div class="element__info-grid">
+                            <h2 class="element__title-grid">Бабочка Масковая</h2>
+                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
                     </li>
-                    <li class="element-grid__item">
-                        <img src="./image/8.jpg" alt="" class="element-grid__image">
-                        <div class="element-grid__info">
-                            <h2 class="element-grid__title">Мандаринка Глянцевая</h2>
-                            <button class="element-buttone__like" type="button" aria-label="лайк"></button>
+                    <li class="element__item-grid">
+                        <img src="./image/8.jpg" alt="фото шесть" class="element__image-grid">
+                        <div class="element__info-grid">
+                            <h2 class="element__title-grid">Мандаринка Глянцевая</h2>
+                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
                     </li>
                 </ul>
@@ -94,6 +77,23 @@
             <p class="footer__copyright">© 2023 Mesto Russia by Чайник 4.0</p>
         </footer>
     </div>
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__close" type="button" aria-label="Закрыть">
+                <img class="popup__close-img" src="./image/Close Icon.png" alt="Закрыть">
+            </button>
+            <form class="popup__form" name="editing">
+                <h2 class="popup__profile-name">Редактировать профиль</h2>
+                <fieldset class="popup__field">
+                    <input class="popup__fill" type="text" id="name" name="name" required=""
+                        value="Жак-Ив Кусто"></input>
+                    <input class="popup__fill" type="text" id="description" name="description" required=""
+                        value="Исследователь океана"></input>
+                    <button class="popup__sumbit" type="submit" aria-label="Сохранить">Сохранить</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script src="javascript/index.js"></script>
 </body>
-
 </html>
