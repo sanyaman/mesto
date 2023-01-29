@@ -1,7 +1,0 @@
-.element__image-grid {
-    width: 282px;
-    height: 282px;
-    border-radius: 10px 10px 0 0; /* рамка - тк сливается фон с фоном картинки, что в этом случае предпринять ?))) */
-    display: block;
-    object-fit: cover;
-  }
