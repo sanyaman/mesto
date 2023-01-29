@@ -1,0 +1,22 @@
+.element__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    max-width: 880px;
+  
+    gap: 20px 17px;
+    margin: 0 auto;
+    padding: 51px 0 67px 0;
+    list-style: none;
+  }
+  @media screen and (max-width: 910px) {
+    .element__grid {
+      width: 586px;
+      padding-top: 36px;
+    }
+  }
+  @media screen and (max-width: 610px) {
+    .element__grid {
+      width: 282px;
+      padding-bottom: 48px;
+    }
+  }
