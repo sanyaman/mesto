@@ -14,8 +14,7 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__title/profile__title.css);
-/*elements*/
-@import url(../blocks/elements/elements.css);
+
 /*element*/
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__grid/element__grid.css);
