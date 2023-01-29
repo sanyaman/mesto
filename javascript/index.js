@@ -9,6 +9,8 @@ let profilesubtitle = document.querySelector(".profile__subtitle"); // пере�
 // функция клика на карандаш и вызова модального окна 
 profilebuttonedit.addEventListener("click", function () {
 popup.classList.add("popup__active");
+nameInput.value = profiletitle.textContent;
+jobInput.value = profilesubtitle.textContent;
 });
 // функция клика на крестик и закрытие модального окна 
 popupclose.addEventListener("click", function () {
