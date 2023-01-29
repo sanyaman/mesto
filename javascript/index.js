@@ -13,7 +13,9 @@ popup.classList.add("popup__active");
 // функция клика на крестик и закрытие модального окна 
 popupclose.addEventListener("click", function () {
 popup.classList.remove("popup__active");
+document.querySelector(".popup__form").reset();
 });
+
 
 let formElement = document.querySelector(".popup__form"); // переменная формы 
 let nameInput = formElement.elements.name;   // выбор имя поля
@@ -29,5 +31,3 @@ popup.classList.remove("popup__active");
 }
 //яндекс бонус
 formElement.addEventListener("submit", handleFormSubmit);
-
-
