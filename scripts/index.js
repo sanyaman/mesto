@@ -1,15 +1,13 @@
 let popup = document.querySelector(".popup"); // переиенная модалки
 let popupOpen = document.querySelector(".profile__button-edit"); //переменная карандаша
 let popupClose = document.querySelector(".popup__close"); // переменная  кнопки закрыть
-let popupSumbit = document.querySelector(".popup__sumbit"); //переменная кнопки сохранить
-let popupFill = document.querySelector(".popup__fill"); //переменная полей формы из нее взять  name
 let profileTitle = document.querySelector(".profile__title"); // переменная  профиля имя
 let profileSubtitle = document.querySelector(".profile__subtitle"); // переменная   профиля описания
 let formElement = document.querySelector(".popup__form"); // переменная формы
 // let nameInput = formElement.elements.name; // переменная выбор имя поля (тоже правильно!!!)
 // let jobInput = formElement.elements.description; //переменная  выбор имя поля (тоже правильно!!!)
-let nameInput = document.querySelector(".popup__fill_name_value");
-let jobInput = document.querySelector(".popup__fill_description_value");
+let nameInput = document.querySelector(".popup__fill_value_name");
+let jobInput = document.querySelector(".popup__fill_value_description");
 //функция открытия попап
 function openPopup() {
   popup.classList.add("popup_opened");
