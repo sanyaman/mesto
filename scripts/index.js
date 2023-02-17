@@ -162,7 +162,7 @@ function addCardTemplate(elementName, elementLink) {
 
   elementImageTmplt.addEventListener("click", () => {
       popupFullImage( elementImageTmplt.src,  elementTitleTmplt.textContent);
-    }); //полномаштабная картинка 
+    }); //вызов на клик - полномаштабная картинка 
 
   return initialCardsElement; //завершает выполнение текущей функции и возвращает её значение
   
