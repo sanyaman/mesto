@@ -11,7 +11,7 @@
   .element__like-buttone:hover {
     opacity: 0.5;
   }
-  .element__like-buttone:active {
+ /* .element__like-buttone:active {
     background-image: url(../../../image/heart\ active.svg);
     opacity: 10;
-  }
+  } */

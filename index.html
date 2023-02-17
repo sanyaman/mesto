@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="sanyaman">
     <link rel="stylesheet" href="pages/index.css">
+    <link rel="icon" href="./image/heart active.svg">
     <title>Место</title>
 </head>
 
@@ -28,15 +30,17 @@
             </section>
             <section class="element">
                 <ul class="element__grid">
-                    <li class="element__item-grid">
+                    <!-- <li class="element__item-grid">
                         <img src="./image/1.jpg" alt="Жёлтая Зебрасома" class="element__image-grid">
+                        <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
                         <div class="element__info-grid">
                             <h2 class="element__title-grid">Жёлтая Зебрасома</h2>
-                            <button class="element__like-buttone" type="button" aria-label="лайк"></button>
+                            <button class="element__like-buttone " type="button" aria-label="лайк"></button>
                         </div>
                     </li>
                     <li class="element__item-grid">
                         <img src="./image/4.jpg" alt="Рыба ангел" class="element__image-grid ">
+                        <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
                         <div class="element__info-grid">
                             <h2 class="element__title-grid">Рыба ангел</h2>
                             <button class="element__like-buttone" type="button" aria-label="лайк"></button>
@@ -44,6 +48,7 @@
                     </li>
                     <li class="element__item-grid">
                         <img src="./image/3.jpg" alt="Бабочка Пинцет" class="element__image-grid">
+                        <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
                         <div class="element__info-grid">
                             <h2 class="element__title-grid">Бабочка Пинцет</h2>
                             <button class="element__like-buttone" type="button" aria-label="лайк"></button>
@@ -51,6 +56,7 @@
                     </li>
                     <li class="element__item-grid">
                         <img src="./image/7.jpg" alt="Губан лавандовый" class="element__image-grid">
+                        <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
                         <div class="element__info-grid">
                             <h2 class="element__title-grid">Губан лавандовый</h2>
                             <button class="element__like-buttone" type="button" aria-label="лайк"></button>
@@ -58,6 +64,7 @@
                     </li>
                     <li class="element__item-grid">
                         <img src="./image/2.jpg" alt="Бабочка Масковая" class="element__image-grid">
+                        <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
                         <div class="element__info-grid">
                             <h2 class="element__title-grid">Бабочка Масковая</h2>
                             <button class="element__like-buttone" type="button" aria-label="лайк"></button>
@@ -65,11 +72,12 @@
                     </li>
                     <li class="element__item-grid">
                         <img src="./image/8.jpg" alt="Мандаринка Глянцевая" class="element__image-grid">
+                        <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
                         <div class="element__info-grid">
                             <h2 class="element__title-grid">Мандаринка Глянцевая</h2>
                             <button class="element__like-buttone" type="button" aria-label="лайк"></button>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </section>
         </main>
@@ -77,22 +85,56 @@
             <p class="footer__copyright">© 2023 Mesto Russia by Чайник 4.0</p>
         </footer>
     </div>
-    <div class="popup">
-        <div class="popup__container">
-            <button class="popup__close" type="button" aria-label="Закрыть">
+    <div class="popup popup__edit ">
+        <div class="popup__container popup__container-edit">
+            <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть">
             </button>
-            <form class="popup__form" name="editing">
+            <form class="popup__form popup__form-editing" name="editing">
                 <h2 class="popup__profile-name">Редактировать профиль</h2>
-                <fieldset class="popup__field">
+                <fieldset class="popup__field popup__field-edit">
                     <input class="popup__fill popup__fill_value_name" type="text" id="name" name="name" required=""
                         value="Жак-Ив Кусто">
                     <input class="popup__fill popup__fill_value_description" type="text" id="description"
                         name="description" required="" value="Исследователь океана">
                 </fieldset>
-                <button class="popup__sumbit" type="submit" aria-label="Сохранить">Сохранить</button>
+                <button class="popup__sumbit popup__sumbit-edit" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
+    <div class="popup popup__add ">
+        <div class="popup__container popup__container-add">
+            <button class="popup__close popup__close-add" type="button" aria-label="Закрыть"></button>
+            <form class="popup__form popup__form-add" name="adding">
+                <h2 class="popup__profile-name">Новое место</h2>
+                <fieldset class="popup__field popup__field-add">
+                    <input class="popup__fill popup__fill_value_title" type="text" id="title" name="title" required=""
+                        value="" placeholder="Название">
+                    <input class="popup__fill popup__fill_value_image" type="url" id="image" name="image" required=""
+                        value="" placeholder="Ссылка на картинку">
+                </fieldset>
+                <button class="popup__sumbit popup__sumbit-add" type="submit" aria-label="Создать">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup__full">
+        <div class="popup__container popup__container-img">
+            <figure class="popup__place-img">
+                <button class="popup__close popup__close-img"></button>
+                <img class="popup__modal-img" src="#" alt="#">
+                <figcaption class="popup__text-img"></figcaption>
+            </figure>
+        </div>
+    </div>
+    <template id="grid-template">
+        <li class="element__item-grid">
+            <img class="element__image-grid" src="#" alt="#">
+            <button class="element__delete-buttone" type="button" aria-label="корзина"></button>
+            <div class="element__info-grid">
+                <h2 class="element__title-grid"></h2>
+                <button class="element__like-buttone" type="button" aria-label="лайк"></button>
+            </div>
+            </li>
+    </template>
     <script src="scripts/index.js"></script>
 </body>
 
