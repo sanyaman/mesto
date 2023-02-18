@@ -1,0 +1,9 @@
+
+.popup__container-img {
+	max-width: 816px;
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: none;
+}
