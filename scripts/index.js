@@ -12,7 +12,7 @@ const initialCardsTemplate = document.querySelector("#grid-template").content; /
 const popupFormAdd = document.querySelector(".popup__form-add");  //переменная форма попап добавления картинок
 const nameImputAdd = document.querySelector(".popup__fill_value_title"); //переменная  поле текста 
 const linkImputAdd = document.querySelector(".popup__fill_value_image"); //переменная поле ссылки картинки 
-const popupAdd = document.querySelector(".popup__add"); //переменные окна add
+const popupAdd = document.querySelector(".popup_add"); //переменные окна add
 const popupOpenAdd = document.querySelector(".profile__button-add"); //переменная  +
 const popupCloseAdd = document.querySelector(".popup__close-add"); //переменная  х
 //---------------------------------------------------------------------------------------------------------------//
@@ -76,7 +76,7 @@ popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
 //---------------------------------------------------------------------------------------------------------------//
 
 //открытие полномаштабной картинки 
-const  popupFull = document.querySelector(".popup__full");
+const  popupFull = document.querySelector(".popup_full");
 const  popupModal = document.querySelector(".popup__modal-img");
 const  popupText = document.querySelector(".popup__text-img");
 const  popupContainerImg = document.querySelector(".popup__container-img");
