@@ -42,4 +42,4 @@
 @import url(../blocks/popup/__modal-img/popup__modal-img.css);
 @import url(../blocks/popup/__place-img/popup__place-img.css);
 @import url(../blocks/popup/__text-img/popup__text-img.css);
-@import url(../blocks/popup/__full/popup_full.css);
+@import url(../blocks/popup/_full/popup_full.css);
