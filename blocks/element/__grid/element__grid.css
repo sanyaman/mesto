@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 282px);
     max-width: 880px;
+    min-width: 880px;
   
     gap: 20px 17px;
     margin: 0 auto;
@@ -11,12 +12,14 @@
   @media screen and (max-width: 910px) {
     .element__grid {
       max-width: 586px;
+      min-width: 586px;
       padding-top: 36px;
     }
   }
   @media screen and (max-width: 610px) {
     .element__grid {
       max-width: 282px;
+      min-width: 282px;
       padding-bottom: 48px;
     }
   }

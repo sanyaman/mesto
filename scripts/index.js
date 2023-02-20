@@ -71,89 +71,6 @@ const  popupCloseImg = document.querySelector(".popup__close-img");
 
 //---------------------------------------------------------------------------------------------------------------//
 
-//единые функции всех popap 
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-}
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-}
-
-//---------------------------------------------------------------------------------------------------------------//
-
-//функция открытия попап edit
-profileButtoneEdit.addEventListener("click", () => {
-  nameInputEdit.value = profileTitle.textContent;
-  jobInputEdit.value = profileSubtitle.textContent;
-  openPopup(popupOpenEdit);
-});
-//функция закрытия попап edit
-popupCloseEdit.addEventListener("click", () => {
-  closePopup(popupOpenEdit);
-});
-//функция редактирования формы edit
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = nameInputEdit.value;
-  profileSubtitle.textContent = jobInputEdit.value;
-  closePopup(popupOpenEdit);
-}
-// вызов  сохранение edit
-popupFormEdit.addEventListener("submit", handleFormSubmit);
-
-//---------------------------------------------------------------------------------------------------------------//
-
-//функция открытия popup add
-profileButtoneAdd.addEventListener("click", () => {
-  openPopup(popupAdd);
-  popupFormAdd.reset();
-});
-
-//функция закрытия.крестик popup add
-popupCloseAdd.addEventListener("click", () => {
-  closePopup(popupAdd);
-});
-// Вставляет узлы перед первым дочерним элементом узла
-function addCard(initialCardsElement) {
-  initialCardsList.prepend(initialCardsElement);
-}
-// функция добавления карточек в разметку 
-function handleCardFormSubmitAdd(evt) {
-  evt.preventDefault();
-  const cardInputsAdd = addCardTemplate(nameInputAdd.value, linkInputAdd.value); // выбор полей попапОкнаКартинок по Бэм )
-  addCard(cardInputsAdd); // вызов функции добавления карточек в начало массива с элементами массива
-  closePopup(popupAdd); 
-}
-
-// вызов окна открытие , закрытие , добавление add
-popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
-
-//---------------------------------------------------------------------------------------------------------------//
-
-// функция открфтия полномаштабной картинки
-function popupFullImage(elementLink ,elementName) {
-  popupModalImg.src = elementLink;
-  popupTextImg.textContent = elementName; 
-  popupModalImg.alt = elementName ; 
-  openPopup(popupFull);
-  
-}
-
-//функция закрытия.крестик popup img
-popupCloseImg.addEventListener("click", () => {
-  closePopup(popupFull);
-});
-
-//---------------------------------------------------------------------------------------------------------------//
-
-// переборка массива методом  цикла forEach
-initialCards.forEach((element) => {
-  const initialCardsElement = addCardTemplate(element.name, element.link); // обьявляю переменную массива  которая равна  функции тимплейт с учеетом элементов массива
-  addCard(initialCardsElement); // вызов функции добавления карточки в которую перемещается функция  тимплейт с cloneNode
-});
-
-//---------------------------------------------------------------------------------------------------------------//
-
 //функция отображения карточек тимплейт 
 function addCardTemplate(elementName, elementLink) {
   const initialCardsElement = initialCardsTemplate.querySelector(".element__item-grid").cloneNode(true); // клонирование разметки
@@ -182,4 +99,95 @@ function addCardTemplate(elementName, elementLink) {
   return initialCardsElement; //завершает выполнение текущей функции и возвращает её значение
   
 };
+
+// переборка массива методом  цикла forEach
+initialCards.forEach((element) => {
+  const initialCardsElement = addCardTemplate(element.name, element.link); // обьявляю переменную массива  которая равна  функции тимплейт с учеетом элементов массива
+  addCard(initialCardsElement); // вызов функции добавления карточки в которую перемещается функция  тимплейт с cloneNode
+});
+
+//---------------------------------------------------------------------------------------------------------------//
+
+//функция редактирования формы edit
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = nameInputEdit.value;
+  profileSubtitle.textContent = jobInputEdit.value;
+  closePopup(popupOpenEdit);
+}
+
+//---------------------------------------------------------------------------------------------------------------//
+
+// Вставляет узлы перед первым дочерним элементом узла add
+function addCard(initialCardsElement) {
+  initialCardsList.prepend(initialCardsElement);
+}
+// функция добавления карточек в разметку  add
+function handleCardFormSubmitAdd(evt) {
+  evt.preventDefault();
+  const cardInputsAdd = addCardTemplate(nameInputAdd.value, linkInputAdd.value); // выбор полей попапОкнаКартинок по Бэм )
+  addCard(cardInputsAdd); // вызов функции добавления карточек в начало массива с элементами массива
+  closePopup(popupAdd); 
+}
+
+//---------------------------------------------------------------------------------------------------------------//
+
+// функция открфтия полномаштабной картинки
+function popupFullImage(elementLink ,elementName) {
+  popupModalImg.src = elementLink;
+  popupTextImg.textContent = elementName; 
+  popupModalImg.alt = elementName ; 
+  openPopup(popupFull);
+  
+}
+
+//---------------------------------------------------------------------------------------------------------------//
+
+//единые функции всех popap 
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+}
+
+//---------------------------------------------------------------------------------------------------------------//
+
+// вызов  сохранение edit
+popupFormEdit.addEventListener("submit", handleFormSubmit);
+// вызов окна открытие , закрытие , добавление add
+popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
+
+//---------------------------------------------------------------------------------------------------------------//
+
+//функция открытия попап edit
+profileButtoneEdit.addEventListener("click", () => {
+  nameInputEdit.value = profileTitle.textContent;
+  jobInputEdit.value = profileSubtitle.textContent;
+  openPopup(popupOpenEdit);
+});
+
+//функция открытия popup add
+profileButtoneAdd.addEventListener("click", () => {
+  openPopup(popupAdd);
+  popupFormAdd.reset();
+});
+
+
+//---------------------------------------------------------------------------------------------------------------//
+
+//функция закрытия попап edit
+popupCloseEdit.addEventListener("click", () => {
+  closePopup(popupOpenEdit);
+});
+
+//функция закрытия.крестик popup add
+popupCloseAdd.addEventListener("click", () => {
+  closePopup(popupAdd);
+});
+
+//функция закрытия.крестик popup img
+popupCloseImg.addEventListener("click", () => {
+  closePopup(popupFull);
+});
 //---------------------------------------------------------------------------------------------------------------//
