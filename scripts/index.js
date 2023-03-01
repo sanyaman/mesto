@@ -36,7 +36,7 @@ const initialCardsTemplate = document.querySelector("#grid-template").content; /
 
 //---------------------------------------------------------------------------------------------------------------//
 
-const popup = document.querySelector(".popup");
+const popupAll = document.querySelectorAll(".popup"); //выбираю все попапы для оверлей
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -70,7 +70,11 @@ const  popupContainerImg = document.querySelector(".popup__container-img");
 const  popupCloseImg = document.querySelector(".popup__close-img");
 
 //---------------------------------------------------------------------------------------------------------------//
+const resetFillSpan = document.querySelectorAll(".popup__fill-input-error");
+const resetFillInput = document.querySelectorAll(".popup__fill");
+//const submitEdit = document.querySelectorAll(".popup__sumbit-edit");
 
+//---------------------------------------------------------------------------------------------------------------//
 //функция отображения карточек тимплейт 
 function addCardTemplate(elementName, elementLink) {
   const initialCardsElement = initialCardsTemplate.querySelector(".element__item-grid").cloneNode(true); // клонирование разметки
@@ -82,14 +86,14 @@ function addCardTemplate(elementName, elementLink) {
 
   initialCardsElement
     .querySelector(".element__like-buttone")
-    .addEventListener("click", function (event) {
-      event.target.classList.toggle("element__like-active");
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__like-active");
     }); //  лайк Актив
 
   initialCardsElement
     .querySelector(".element__delete-buttone")
-    .addEventListener("click", function (event) {
-      event.target.closest(".element__item-grid").remove();
+    .addEventListener("click", function (evt) {
+      evt.target.closest(".element__item-grid").remove();
     }); //удаление карточек
 
   elementImageTmplt.addEventListener("click", () => {
@@ -105,6 +109,7 @@ initialCards.forEach((element) => {
   const initialCardsElement = addCardTemplate(element.name, element.link); // обьявляю переменную массива  которая равна  функции тимплейт с учеетом элементов массива
   addCard(initialCardsElement); // вызов функции добавления карточки в которую перемещается функция  тимплейт с cloneNode
 });
+
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -146,11 +151,36 @@ function popupFullImage(elementLink ,elementName) {
 //единые функции всех popap 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-}
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
+  document.addEventListener('keyup', closePopupEsc);
+  
 }
 
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+  document.removeEventListener('keyup', closePopupEsc);
+}
+//функция закрытия по ESC
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector(".popup_opened"));
+  }
+}
+//функция закрытия по Овер
+function closePopupArea(evt, popup) {
+  if (evt == popup) {
+    closePopup(popup);
+  }
+}
+
+//функция сброса полей ошибки при открытии модалок
+function clearErrorPopup() {
+  for (let i = 0; i < resetFillSpan.length; i++) {
+    resetFillSpan[i].textContent = "";
+    resetFillSpan[i].classList.remove("popup__fill-input-error_active");
+    resetFillInput[i].classList.remove("popup__fill_error");
+  }
+  
+}
 //---------------------------------------------------------------------------------------------------------------//
 
 // вызов  сохранение edit
@@ -164,30 +194,47 @@ popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
 profileButtoneEdit.addEventListener("click", () => {
   nameInputEdit.value = profileTitle.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
+  clearErrorPopup(); //вообщем знаний не хватило как реализовать правильно  сброс модалки профиля , 
+  // сабмит становится неактивным ,
   openPopup(popupOpenEdit);
+
 });
 
 //функция открытия popup add
 profileButtoneAdd.addEventListener("click", () => {
   openPopup(popupAdd);
+  clearErrorPopup();
   popupFormAdd.reset();
+
 });
 
 
 //---------------------------------------------------------------------------------------------------------------//
 
-//функция закрытия попап edit
+//слушатель закрытия попап edit
 popupCloseEdit.addEventListener("click", () => {
   closePopup(popupOpenEdit);
 });
 
-//функция закрытия.крестик popup add
+//слушатель закрытия.крестик popup add
 popupCloseAdd.addEventListener("click", () => {
   closePopup(popupAdd);
 });
 
-//функция закрытия.крестик popup img
+//слушатель закрытия.крестик popup img
 popupCloseImg.addEventListener("click", () => {
   closePopup(popupFull);
 });
+//слушатель закрытия по овер
+popupAll.forEach((popup) => {
+  popup.addEventListener("click", function (evt) {
+  closePopupArea(evt.target, popup);
+  });
+  
+});
+
+
 //---------------------------------------------------------------------------------------------------------------//
+
+
+
