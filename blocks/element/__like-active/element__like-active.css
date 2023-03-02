@@ -4,6 +4,6 @@ transition: 0.3s;
 
 }
 .element__like-active:hover {
-    transform: scale(1.2); 
+    transform: scale(1.2);
     opacity: 0.5;
 }
