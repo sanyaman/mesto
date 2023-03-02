@@ -70,9 +70,7 @@ const  popupContainerImg = document.querySelector(".popup__container-img");
 const  popupCloseImg = document.querySelector(".popup__close-img");
 
 //---------------------------------------------------------------------------------------------------------------//
-const resetFillSpan = document.querySelectorAll(".popup__fill-input-error");
-const resetFillInput = document.querySelectorAll(".popup__fill");
-//const submitEdit = document.querySelectorAll(".popup__sumbit-edit");
+
 
 //---------------------------------------------------------------------------------------------------------------//
 //функция отображения карточек тимплейт 
@@ -172,15 +170,7 @@ function closePopupArea(evt, popup) {
   }
 }
 
-//функция сброса полей ошибки при открытии модалок
-function clearErrorPopup() {
-  for (let i = 0; i < resetFillSpan.length; i++) {
-    resetFillSpan[i].textContent = "";
-    resetFillSpan[i].classList.remove("popup__fill-input-error_active");
-    resetFillInput[i].classList.remove("popup__fill_error");
-  }
-  
-}
+
 //---------------------------------------------------------------------------------------------------------------//
 
 // вызов  сохранение edit
@@ -194,16 +184,13 @@ popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
 profileButtoneEdit.addEventListener("click", () => {
   nameInputEdit.value = profileTitle.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
-  clearErrorPopup(); //вообщем знаний не хватило как реализовать правильно  сброс модалки профиля , 
-  // сабмит становится неактивным ,
   openPopup(popupOpenEdit);
-
+ 
 });
 
 //функция открытия popup add
 profileButtoneAdd.addEventListener("click", () => {
   openPopup(popupAdd);
-  clearErrorPopup();
   popupFormAdd.reset();
 
 });
@@ -235,6 +222,4 @@ popupAll.forEach((popup) => {
 
 
 //---------------------------------------------------------------------------------------------------------------//
-
-
 

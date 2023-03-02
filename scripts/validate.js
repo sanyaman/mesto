@@ -82,7 +82,9 @@ const toggleButtonState = (inputList, buttonElement) => {
     buttonElement.setAttribute("disabled", true);
   } else {
     buttonElement.removeAttribute("disabled");
+    
   }
+  
 };
 //---------------------------------------------------------------------------------------------------------------//
 // Функция добавления кнопке :disabled если поля не соответствуют
@@ -103,6 +105,7 @@ enableValidation({
   inputErrorClass: "popup__fill_error",
   errorClass: "popup__fill-input-error_active",
 });
+
 
 //---------------------------------------------------------------------------------------------------------------//
 //вызов функции валидации
