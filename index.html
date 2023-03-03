@@ -94,13 +94,13 @@
             <form class="popup__form popup__form-edit " name="editing-form" novalidate>
                 <h2 class="popup__profile-name">Редактировать профиль</h2>
                 <fieldset class="popup__field popup__field-edit">
-                    <input class="popup__fill popup__fill_value_name" type="text" id="add-name" name="name" required
+                    <input class="popup__fill popup__fill_value_name" type="text" id="name" name="name" required
                         value="Жак-Ив Кусто" minlength="2" maxlength="40" placeholder="Имя">
-                    <span class="popup__fill-input-error" id="add-name-error"></span>
-                    <input class="popup__fill popup__fill_value_description" type="text" id="add-description"
+                    <span class="popup__fill-error" id="name-error"></span>
+                    <input class="popup__fill popup__fill_value_description" type="text" id="description"
                         name="description" required value="Исследователь океана" minlength="2" maxlength="200"
                         placeholder="Информация профиля">
-                    <span class="popup__fill-input-error" id="add-description-error"></span>
+                    <span class="popup__fill-error" id="description-error"></span>
                 </fieldset>
                 <button class="popup__sumbit popup__sumbit-edit" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
@@ -112,12 +112,12 @@
             <form class="popup__form popup__form-add" name="adding-form" novalidate>
                 <h2 class="popup__profile-name">Новое место</h2>
                 <fieldset class="popup__field popup__field-add">
-                    <input class="popup__fill popup__fill_value_title" type="text" id="add-title" name="title"
+                    <input class="popup__fill popup__fill_value_title" type="text" id="title" name="title"
                         required="" value="" placeholder="Название" minlength="2" maxlength="30">
-                    <span class="popup__fill-input-error" id="add-title-error"></span>
-                    <input class="popup__fill popup__fill_value_image" type="url" id="add-image" name="image"
+                    <span class="popup__fill-error" id="title-error"></span>
+                    <input class="popup__fill popup__fill_value_image" type="url" id="image" name="image"
                         required="" value="" placeholder="Ссылка на картинку">
-                    <span class="popup__fill-input-error" id="add-image-error"></span>
+                    <span class="popup__fill-error" id="image-error"></span>
                 </fieldset>
                 <button class="popup__sumbit popup__sumbit-add" type="submit" aria-label="Создать">Создать</button>
             </form>
@@ -142,8 +142,9 @@
             </div>
         </li>
     </template>
-    <script src="scripts/index.js"></script>
     <script src="scripts/validate.js"></script>
+    <script src="scripts/cards.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>

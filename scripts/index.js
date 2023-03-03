@@ -1,32 +1,3 @@
-//---------------------------------------------------------------------------------------------------------------//
-
-//Массив картинок
-const initialCards = [
-  {
-    name: "Жёлтая Зебрасома",
-    link: "https://sanyaman.github.io/mesto/image/1.jpg",
-  },
-  {
-    name: "Рыба ангел",
-    link: "https://sanyaman.github.io/mesto/image/4.jpg",
-  },
-  {
-    name: "Бабочка Пинцет",
-    link: "https://sanyaman.github.io/mesto/image/3.jpg",
-  },
-  {
-    name: "Губан лавандовый",
-    link: "https://sanyaman.github.io/mesto/image/7.jpg",
-  },
-  {
-    name: "Бабочка Масковая",
-    link: "https://sanyaman.github.io/mesto/image/2.jpg",
-  },
-  {
-    name: "Мандаринка Глянцевая",
-    link: "https://sanyaman.github.io/mesto/image/8.jpg",
-  },
-];
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -42,7 +13,7 @@ const popupAll = document.querySelectorAll(".popup"); //выбираю все п
 
 //переменные profile + popup edit
 const popupOpenEdit = document.querySelector(".popup_edit"); // переиенная модалки edit
-const popupCloseEdit = document.querySelector(".popup__close-edit");//переиенная модалки  Close buttone
+const popupCloseEdit = document.querySelector(".popup__close-edit"); //переиенная модалки  Close buttone
 const popupFormEdit = document.querySelector(".popup__form-edit"); // переменная формы edit
 const nameInputEdit = document.querySelector(".popup__fill_value_name"); // переменная выбор имя поля
 const jobInputEdit = document.querySelector(".popup__fill_value_description"); //переменная  выбор имя поля
@@ -55,126 +26,126 @@ const profileSubtitle = document.querySelector(".profile__subtitle"); // пер�
 //переменные element  + popup add
 const popupAdd = document.querySelector(".popup_add"); //переменные окна add
 const popupCloseAdd = document.querySelector(".popup__close-add"); //переменная  х
-const popupFormAdd = document.querySelector(".popup__form-add");  //переменная форма попап добавления картинок
-const nameInputAdd = document.querySelector(".popup__fill_value_title"); //переменная  поле текста 
-const linkInputAdd = document.querySelector(".popup__fill_value_image"); //переменная поле ссылки картинки 
+const popupFormAdd = document.querySelector(".popup__form-add"); //переменная форма попап добавления картинок
+const nameInputAdd = document.querySelector(".popup__fill_value_title"); //переменная  поле текста
+const linkInputAdd = document.querySelector(".popup__fill_value_image"); //переменная поле ссылки картинки
 const profileButtoneAdd = document.querySelector(".profile__button-add"); //переменная  +
 
 //---------------------------------------------------------------------------------------------------------------//
 
 //переменные element  + popup Full image
-const  popupFull = document.querySelector(".popup_full"); 
-const  popupModalImg = document.querySelector(".popup__modal-img");
-const  popupTextImg = document.querySelector(".popup__text-img");
-const  popupContainerImg = document.querySelector(".popup__container-img");
-const  popupCloseImg = document.querySelector(".popup__close-img");
+const popupFull = document.querySelector(".popup_full");
+const popupModalImg = document.querySelector(".popup__modal-img");
+const popupTextImg = document.querySelector(".popup__text-img");
+const popupContainerImg = document.querySelector(".popup__container-img");
+const popupCloseImg = document.querySelector(".popup__close-img");
 
 //---------------------------------------------------------------------------------------------------------------//
-
-
+const disabledButtonAdd = document.querySelector(".popup__sumbit-add");
 //---------------------------------------------------------------------------------------------------------------//
-//функция отображения карточек тимплейт 
-function addCardTemplate(elementName, elementLink) {
-  const initialCardsElement = initialCardsTemplate.querySelector(".element__item-grid").cloneNode(true); // клонирование разметки
-  const elementTitleTmplt = initialCardsElement.querySelector(".element__title-grid"); // переменная разметки тимплейт  Н2
-  const elementImageTmplt = initialCardsElement.querySelector(".element__image-grid"); // переменная тимплейт img
-  elementTitleTmplt.textContent = elementName;  //.textContent = element.name; // добавление в разметку текст
-  elementImageTmplt.alt = elementName;  //.alt = element.link; // добавление в alt текста с Титла
+//функция отображения карточек тимплейт
+function createCard(elementName, elementLink) {
+  const cardElement = initialCardsTemplate
+    .querySelector(".element__item-grid")
+    .cloneNode(true); // клонирование разметки
+  const elementTitleTmplt = cardElement.querySelector(
+    ".element__title-grid"
+  ); // переменная разметки тимплейт  Н2
+  const elementImageTmplt = cardElement.querySelector(
+    ".element__image-grid"
+  ); // переменная тимплейт img
+  elementTitleTmplt.textContent = elementName; //.textContent = element.name; // добавление в разметку текст
+  elementImageTmplt.alt = elementName; //.alt = element.link; // добавление в alt текста с Титла
   elementImageTmplt.src = elementLink; //.src = element.link; // добавление в разметку картинку
 
-  initialCardsElement
+  cardElement
     .querySelector(".element__like-buttone")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("element__like-active");
     }); //  лайк Актив
 
-  initialCardsElement
+  cardElement
     .querySelector(".element__delete-buttone")
     .addEventListener("click", function (evt) {
       evt.target.closest(".element__item-grid").remove();
     }); //удаление карточек
 
   elementImageTmplt.addEventListener("click", () => {
-      popupFullImage( elementImageTmplt.src,  elementTitleTmplt.textContent);
-    }); //вызов на клик - полномаштабная картинка 
+    openPopupFullImage(elementImageTmplt.src, elementTitleTmplt.textContent);
+  }); //вызов на клик - полномаштабная картинка
 
-  return initialCardsElement; //завершает выполнение текущей функции и возвращает её значение
-  
+  return cardElement; //завершает выполнение текущей функции и возвращает её значение
 };
 
 // переборка массива методом  цикла forEach
 initialCards.forEach((element) => {
-  const initialCardsElement = addCardTemplate(element.name, element.link); // обьявляю переменную массива  которая равна  функции тимплейт с учеетом элементов массива
-  addCard(initialCardsElement); // вызов функции добавления карточки в которую перемещается функция  тимплейт с cloneNode
+  const cardElement = createCard(element.name, element.link); // обьявляю переменную массива  которая равна  функции тимплейт с учеетом элементов массива
+  addCard(cardElement); // вызов функции добавления карточки в которую перемещается функция  тимплейт с cloneNode
 });
-
 
 //---------------------------------------------------------------------------------------------------------------//
 
 //функция редактирования формы edit
-function handleFormSubmit(evt) {
+function handleFormSubmitEdit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInputEdit.value;
   profileSubtitle.textContent = jobInputEdit.value;
   closePopup(popupOpenEdit);
-}
+};
 
 //---------------------------------------------------------------------------------------------------------------//
 
 // Вставляет узлы перед первым дочерним элементом узла add
-function addCard(initialCardsElement) {
-  initialCardsList.prepend(initialCardsElement);
-}
+function addCard(cardElement) {
+  initialCardsList.prepend(cardElement);
+};
 // функция добавления карточек в разметку  add
 function handleCardFormSubmitAdd(evt) {
   evt.preventDefault();
-  const cardInputsAdd = addCardTemplate(nameInputAdd.value, linkInputAdd.value); // выбор полей попапОкнаКартинок по Бэм )
-  addCard(cardInputsAdd); // вызов функции добавления карточек в начало массива с элементами массива
-  closePopup(popupAdd); 
-}
+  const card = createCard(nameInputAdd.value, linkInputAdd.value); // выбор полей попапОкнаКартинок по Бэм )
+  addCard(card); // вызов функции добавления карточек в начало массива с элементами массива
+  closePopup(popupAdd);
+};
 
 //---------------------------------------------------------------------------------------------------------------//
 
 // функция открфтия полномаштабной картинки
-function popupFullImage(elementLink ,elementName) {
+function openPopupFullImage(elementLink, elementName) {
   popupModalImg.src = elementLink;
-  popupTextImg.textContent = elementName; 
-  popupModalImg.alt = elementName ; 
+  popupTextImg.textContent = elementName;
+  popupModalImg.alt = elementName;
   openPopup(popupFull);
-  
-}
+};
 
 //---------------------------------------------------------------------------------------------------------------//
 
-//единые функции всех popap 
+//единые функции всех popap
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  document.addEventListener('keyup', closePopupEsc);
-  
-}
+  document.addEventListener("keyup", closePopupEsc);
+};
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  document.removeEventListener('keyup', closePopupEsc);
-}
+  document.removeEventListener("keyup", closePopupEsc);
+};
 //функция закрытия по ESC
 function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === "Escape") {
     closePopup(document.querySelector(".popup_opened"));
   }
-}
+};
 //функция закрытия по Овер
 function closePopupArea(evt, popup) {
-  if (evt == popup) {
+  if (evt === popup) {
     closePopup(popup);
   }
-}
-
+};
 
 //---------------------------------------------------------------------------------------------------------------//
 
 // вызов  сохранение edit
-popupFormEdit.addEventListener("submit", handleFormSubmit);
+popupFormEdit.addEventListener("submit", handleFormSubmitEdit);
 // вызов окна открытие , закрытие , добавление add
 popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
 
@@ -185,16 +156,14 @@ profileButtoneEdit.addEventListener("click", () => {
   nameInputEdit.value = profileTitle.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
   openPopup(popupOpenEdit);
- 
 });
 
 //функция открытия popup add
 profileButtoneAdd.addEventListener("click", () => {
   openPopup(popupAdd);
   popupFormAdd.reset();
-
+  disabledButtonAdd.disabled = true;
 });
-
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -215,11 +184,8 @@ popupCloseImg.addEventListener("click", () => {
 //слушатель закрытия по овер
 popupAll.forEach((popup) => {
   popup.addEventListener("click", function (evt) {
-  closePopupArea(evt.target, popup);
+    closePopupArea(evt.target, popup);
   });
-  
 });
 
-
 //---------------------------------------------------------------------------------------------------------------//
-
