@@ -71,5 +71,5 @@
 
  
 
-© by Sanyaman  Z
+© by Sanyaman
  

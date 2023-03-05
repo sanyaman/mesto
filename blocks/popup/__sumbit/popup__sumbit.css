@@ -19,16 +19,7 @@
 .popup__sumbit:hover {
   opacity: 0.8;
 }
-.popup__sumbit:disabled {
-  color: #000000;
-  background: #E5E5E5;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  border-radius: 2px;
-  opacity: 0.2;
-  cursor: default;
-  transition: visibility 0.3s, opacity 0.4s linear;
-}
+
 
 @media screen and (max-width: 610px) {
   .popup__sumbit {

@@ -46,5 +46,6 @@
 @import url(../blocks/popup/__fill-error/popup__fill-error.css);
 @import url(../blocks/popup/__fill-error/_active/popup__fill-error_active.css);
 @import url(../blocks/popup/__fill/_error/popup__fill_error.css);
+@import url(../blocks/popup/__sumbit/_disabled/popup__sumbit_disabled.css);
 /* main content*/
 @import url(../blocks/content/content.css);

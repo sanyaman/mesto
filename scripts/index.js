@@ -1,4 +1,3 @@
-
 //---------------------------------------------------------------------------------------------------------------//
 
 //Template
@@ -41,19 +40,14 @@ const popupContainerImg = document.querySelector(".popup__container-img");
 const popupCloseImg = document.querySelector(".popup__close-img");
 
 //---------------------------------------------------------------------------------------------------------------//
-const disabledButtonAdd = document.querySelector(".popup__sumbit-add");
-//---------------------------------------------------------------------------------------------------------------//
+
 //функция отображения карточек тимплейт
 function createCard(elementName, elementLink) {
   const cardElement = initialCardsTemplate
     .querySelector(".element__item-grid")
     .cloneNode(true); // клонирование разметки
-  const elementTitleTmplt = cardElement.querySelector(
-    ".element__title-grid"
-  ); // переменная разметки тимплейт  Н2
-  const elementImageTmplt = cardElement.querySelector(
-    ".element__image-grid"
-  ); // переменная тимплейт img
+  const elementTitleTmplt = cardElement.querySelector(".element__title-grid"); // переменная разметки тимплейт  Н2
+  const elementImageTmplt = cardElement.querySelector(".element__image-grid"); // переменная тимплейт img
   elementTitleTmplt.textContent = elementName; //.textContent = element.name; // добавление в разметку текст
   elementImageTmplt.alt = elementName; //.alt = element.link; // добавление в alt текста с Титла
   elementImageTmplt.src = elementLink; //.src = element.link; // добавление в разметку картинку
@@ -73,9 +67,8 @@ function createCard(elementName, elementLink) {
   elementImageTmplt.addEventListener("click", () => {
     openPopupFullImage(elementImageTmplt.src, elementTitleTmplt.textContent);
   }); //вызов на клик - полномаштабная картинка
-
   return cardElement; //завершает выполнение текущей функции и возвращает её значение
-};
+}
 
 // переборка массива методом  цикла forEach
 initialCards.forEach((element) => {
@@ -91,19 +84,22 @@ function handleFormSubmitEdit(evt) {
   profileTitle.textContent = nameInputEdit.value;
   profileSubtitle.textContent = jobInputEdit.value;
   closePopup(popupOpenEdit);
-};
+}
 
 //---------------------------------------------------------------------------------------------------------------//
 
 // Вставляет узлы перед первым дочерним элементом узла add
 function addCard(cardElement) {
   initialCardsList.prepend(cardElement);
-};
+}
+
 // функция добавления карточек в разметку  add
 function handleCardFormSubmitAdd(evt) {
   evt.preventDefault();
-  const card = createCard(nameInputAdd.value, linkInputAdd.value); // выбор полей попапОкнаКартинок по Бэм )
-  addCard(card); // вызов функции добавления карточек в начало массива с элементами массива
+  const card = createCard(nameInputAdd.value, linkInputAdd.value);
+  addCard(card);
+  const disableButtonAdd = evt.target.querySelector(".popup__sumbit-add");
+  invisibleButton(disableButtonAdd, "popup__submit_disabled");
   closePopup(popupAdd);
 };
 
@@ -115,7 +111,7 @@ function openPopupFullImage(elementLink, elementName) {
   popupTextImg.textContent = elementName;
   popupModalImg.alt = elementName;
   openPopup(popupFull);
-};
+}
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -123,24 +119,18 @@ function openPopupFullImage(elementLink, elementName) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keyup", closePopupEsc);
-};
+}
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keyup", closePopupEsc);
-};
+}
 //функция закрытия по ESC
 function closePopupEsc(evt) {
   if (evt.key === "Escape") {
     closePopup(document.querySelector(".popup_opened"));
   }
-};
-//функция закрытия по Овер
-function closePopupArea(evt, popup) {
-  if (evt === popup) {
-    closePopup(popup);
-  }
-};
+}
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -162,7 +152,6 @@ profileButtoneEdit.addEventListener("click", () => {
 profileButtoneAdd.addEventListener("click", () => {
   openPopup(popupAdd);
   popupFormAdd.reset();
-  disabledButtonAdd.disabled = true;
 });
 
 //---------------------------------------------------------------------------------------------------------------//
@@ -183,8 +172,10 @@ popupCloseImg.addEventListener("click", () => {
 });
 //слушатель закрытия по овер
 popupAll.forEach((popup) => {
-  popup.addEventListener("click", function (evt) {
-    closePopupArea(evt.target, popup);
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === popup) {
+      closePopup(popup);
+    }
   });
 });
 

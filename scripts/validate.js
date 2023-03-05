@@ -12,6 +12,7 @@ const showInputError = (
   errorElement.textContent = errorMessage;
   errorElement.classList.add(configuration.errorClass);
 };
+
 //---------------------------------------------------------------------------------------------------------------//
 // Функция  скрытия текста ошибки
 const hideInputError = (formElement, inputElement, configuration) => {
@@ -21,7 +22,7 @@ const hideInputError = (formElement, inputElement, configuration) => {
   errorElement.textContent = "";
 };
 //---------------------------------------------------------------------------------------------------------------//
-// Функция  проверки ввода
+
 const checkInputValidity = (formElement, inputElement, configuration) => {
   if (!inputElement.validity.valid) {
     showInputError(
@@ -35,7 +36,7 @@ const checkInputValidity = (formElement, inputElement, configuration) => {
   }
 };
 //---------------------------------------------------------------------------------------------------------------//
-// Функция  события и переключение сабмита
+
 const setEventListeners = (formElement, configuration) => {
   formElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
@@ -47,19 +48,25 @@ const setEventListeners = (formElement, configuration) => {
   const buttonElement = formElement.querySelector(
     configuration.submitButtonSelector
   );
-
+  toggleButtonState(
+    inputList,
+    buttonElement,
+    configuration.inactiveButtonClass
+  );
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement, configuration);
-      toggleButtonState(inputList, buttonElement,);
+      toggleButtonState(
+        inputList,
+        buttonElement,
+        configuration.inactiveButtonClass
+      );
     });
   });
-
-  toggleButtonState(inputList, buttonElement);
 };
 
 //---------------------------------------------------------------------------------------------------------------//
-// Функция  включения валидации + перебор массива всех форм попап
+
 const enableValidation = (configuration) => {
   const formList = Array.from(
     document.querySelectorAll(configuration.formSelector)
@@ -69,33 +76,39 @@ const enableValidation = (configuration) => {
   });
 };
 //---------------------------------------------------------------------------------------------------------------//
-// Функция  если ввод текста не соответствует
+// кнопки визибл / инвизибл
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
-//---------------------------------------------------------------------------------------------------------------//
-// Функция  переключения кнопки Сабмит
-const toggleButtonState = (inputList, buttonElement) => {
+
+const invisibleButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.setAttribute("disabled", true);
+};
+const visibleButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.removeAttribute("disabled");
+};
+// выбор кнопки с Газом/ без газа
+const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute("disabled", true);
+    invisibleButton(buttonElement, inactiveButtonClass);
   } else {
-    buttonElement.removeAttribute("disabled");
+    visibleButton(buttonElement, inactiveButtonClass);
   }
 };
 
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__fill",
+  submitButtonSelector: ".popup__sumbit",
+  inactiveButtonClass: "popup__submit_disabled",
+  inputErrorClass: "popup__fill_error",
+  errorClass: "popup__fill-error_active",
+});
 //---------------------------------------------------------------------------------------------------------------//
 // Функция добавления кнопке :disabled если поля не соответствуют
 
-/*const blockedButton = (formElement, configuration) => {
-  const buttonElement = formElement.querySelector(
-    configuration.submitButtonSelector
-  );
-  buttonElement.classList.add(configuration.inactiveButtonClass);
-  buttonElement.setAttribute("disabled", "disabled");
-};*/
-//---------------------------------------------------------------------------------------------------------------//
-//вызов функции валидации
-//enableValidation();
-//---------------------------------------------------------------------------------------------------------------//
+//----
