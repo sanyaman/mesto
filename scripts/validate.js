@@ -70,6 +70,7 @@ const setEventListeners = (formElement, configuration) => {
 const enableValidation = (configuration) => {
   const formList = Array.from(
     document.querySelectorAll(configuration.formSelector)
+    
   );
   formList.forEach((formElement) => {
     setEventListeners(formElement, configuration);
@@ -86,10 +87,12 @@ const hasInvalidInput = (inputList) => {
 const invisibleButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.add(inactiveButtonClass);
   buttonElement.setAttribute("disabled", true);
+
 };
 const visibleButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.remove(inactiveButtonClass);
   buttonElement.removeAttribute("disabled");
+  
 };
 // выбор кнопки с Газом/ без газа
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {

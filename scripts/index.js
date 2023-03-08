@@ -40,7 +40,17 @@ const popupContainerImg = document.querySelector(".popup__container-img");
 const popupCloseImg = document.querySelector(".popup__close-img");
 
 //---------------------------------------------------------------------------------------------------------------//
+//очиста полей валидации при повторном отерытии окна
+const cleanValidationFields = (fill) => {
+  fill
+    .querySelectorAll(".popup__fill_error")
+    .forEach((fill) => fill.classList.remove("popup__fill_error"));
+  fill
+    .querySelectorAll(".popup__fill-error_active")
+    .forEach((fill) => fill.classList.remove("popup__fill-error_active"));
+};
 
+//---------------------------------------------------------------------------------------------------------------//
 //функция отображения карточек тимплейт
 function createCard(elementName, elementLink) {
   const cardElement = initialCardsTemplate
@@ -100,8 +110,9 @@ function handleCardFormSubmitAdd(evt) {
   addCard(card);
   const disableButtonAdd = evt.target.querySelector(".popup__sumbit-add");
   invisibleButton(disableButtonAdd, "popup__submit_disabled");
+
   closePopup(popupAdd);
-};
+}
 
 //---------------------------------------------------------------------------------------------------------------//
 
@@ -143,6 +154,7 @@ popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
 
 //функция открытия попап edit
 profileButtoneEdit.addEventListener("click", () => {
+  cleanValidationFields(popupFormEdit);
   nameInputEdit.value = profileTitle.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
   openPopup(popupOpenEdit);
@@ -150,6 +162,7 @@ profileButtoneEdit.addEventListener("click", () => {
 
 //функция открытия popup add
 profileButtoneAdd.addEventListener("click", () => {
+  cleanValidationFields(popupFormAdd);
   openPopup(popupAdd);
   popupFormAdd.reset();
 });
