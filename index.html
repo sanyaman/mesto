@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="sanyaman">
     <link rel="stylesheet" href="pages/index.css">
-    <link rel="icon" href="./image/heart active.svg">
+    <link rel="icon" href="./image/Insta.png">
     <title>Место</title>
 </head>
 
@@ -18,7 +18,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img src="./image/кустосвг.svg" alt="Акванутый" class="profile__avatar">
+                <img src="./image/image3.png" alt="Акванутый" class="profile__avatar">
                 <div class="profile__info">
                     <div class="profile__container">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -91,7 +91,7 @@
         <div class="popup__container popup__container-edit">
             <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть">
             </button>
-            <form class="popup__form popup__form-edit " name="editing-form" novalidate>
+            <form class="popup__form popup__form-edit " name="editingform" novalidate>
                 <h2 class="popup__profile-name">Редактировать профиль</h2>
                 <fieldset class="popup__field popup__field-edit">
                     <input class="popup__fill popup__fill_value_name" type="text" id="name" name="name" required
@@ -109,7 +109,7 @@
     <div class="popup popup_add ">
         <div class="popup__container popup__container-add">
             <button class="popup__close popup__close-add" type="button" aria-label="Закрыть"></button>
-            <form class="popup__form popup__form-add" name="adding-form" novalidate>
+            <form class="popup__form popup__form-add" name="addingform" novalidate>
                 <h2 class="popup__profile-name">Новое место</h2>
                 <fieldset class="popup__field popup__field-add">
                     <input class="popup__fill popup__fill_value_title" type="text" id="title" name="title" required=""
@@ -142,9 +142,9 @@
             </div>
         </li>
     </template>
-    <script src="scripts/validate.js"></script>
-    <script src="scripts/cards.js"></script>
-    <script src="scripts/index.js"></script>
+    <script type="module" src="scripts/FormValidator.js"></script>
+    <script type="module" src="scripts/Card.js"></script>
+    <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>

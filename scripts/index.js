@@ -1,46 +1,73 @@
 //---------------------------------------------------------------------------------------------------------------//
-
-//Template
-const initialCardsList = document.querySelector(".element__grid"); // переменная ul
-const initialCardsTemplate = document.querySelector("#grid-template").content; // переменная template
-
+//подключение экспорта
+import Card from "./Card.js";
+import Validate from "./FormValidator.js";
 //---------------------------------------------------------------------------------------------------------------//
-
-const popupAll = document.querySelectorAll(".popup"); //выбираю все попапы для оверлей
-
-//---------------------------------------------------------------------------------------------------------------//
-
 //переменные profile + popup edit
-const popupOpenEdit = document.querySelector(".popup_edit"); // переиенная модалки edit
-const popupCloseEdit = document.querySelector(".popup__close-edit"); //переиенная модалки  Close buttone
-const popupFormEdit = document.querySelector(".popup__form-edit"); // переменная формы edit
-const nameInputEdit = document.querySelector(".popup__fill_value_name"); // переменная выбор имя поля
-const jobInputEdit = document.querySelector(".popup__fill_value_description"); //переменная  выбор имя поля
-const profileButtoneEdit = document.querySelector(".profile__button-edit"); //переменная карандаша
-const profileTitle = document.querySelector(".profile__title"); // переменная  профиля имя
-const profileSubtitle = document.querySelector(".profile__subtitle"); // переменная   профиля описания
-
+const profile = document.querySelector(".profile");
+const profileTitle = profile.querySelector(".profile__title");
+const profileSubtitle = profile.querySelector(".profile__subtitle");
+const profileButtoneEdit = profile.querySelector(".profile__button-edit");
+const profileButtoneAdd = profile.querySelector(".profile__button-add");
+const popupFormEdit = document.querySelector(".popup__form-edit");
+const popupEdit = document.querySelector(".popup_edit");
+const jobInputEdit = popupEdit.querySelector(".popup__fill_value_description");
+const nameInputEdit = popupEdit.querySelector(".popup__fill_value_name");
 //---------------------------------------------------------------------------------------------------------------//
-
 //переменные element  + popup add
-const popupAdd = document.querySelector(".popup_add"); //переменные окна add
-const popupCloseAdd = document.querySelector(".popup__close-add"); //переменная  х
-const popupFormAdd = document.querySelector(".popup__form-add"); //переменная форма попап добавления картинок
-const nameInputAdd = document.querySelector(".popup__fill_value_title"); //переменная  поле текста
-const linkInputAdd = document.querySelector(".popup__fill_value_image"); //переменная поле ссылки картинки
-const profileButtoneAdd = document.querySelector(".profile__button-add"); //переменная  +
-
+const popupAdd = document.querySelector(".popup_add");
+const popupFormAdd = document.querySelector(".popup__form-add");
+const nameInputAdd = popupAdd.querySelector(".popup__fill_value_title");
+const linkInputAdd = popupAdd.querySelector(".popup__fill_value_image");
 //---------------------------------------------------------------------------------------------------------------//
-
 //переменные element  + popup Full image
 const popupFull = document.querySelector(".popup_full");
-const popupModalImg = document.querySelector(".popup__modal-img");
-const popupTextImg = document.querySelector(".popup__text-img");
-const popupContainerImg = document.querySelector(".popup__container-img");
-const popupCloseImg = document.querySelector(".popup__close-img");
-
+const popupModalImg = popupFull.querySelector(".popup__modal-img");
+const popupTextImg = popupFull.querySelector(".popup__text-img");
 //---------------------------------------------------------------------------------------------------------------//
-//очиста полей валидации при повторном отерытии окна
+// прочие переменные
+const popupAll = document.querySelectorAll(".popup");
+const elementGrid = document.querySelector(".element__grid");
+//---------------------------------------------------------------------------------------------------------------//
+//переменная массивакарточек
+const initialCards = [
+  {
+    name: "Жёлтая Зебрасома",
+    link: "https://sanyaman.github.io/mesto/image/1.jpg",
+  },
+  {
+    name: "Рыба ангел",
+    link: "https://sanyaman.github.io/mesto/image/4.jpg",
+  },
+  {
+    name: "Бабочка Пинцет",
+    link: "https://sanyaman.github.io/mesto/image/3.jpg",
+  },
+  {
+    name: "Губан лавандовый",
+    link: "https://sanyaman.github.io/mesto/image/7.jpg",
+  },
+  {
+    name: "Бабочка Масковая",
+    link: "https://sanyaman.github.io/mesto/image/2.jpg",
+  },
+  {
+    name: "Мандаринка Глянцевая",
+    link: "https://sanyaman.github.io/mesto/image/8.jpg",
+  },
+];
+//---------------------------------------------------------------------------------------------------------------//
+//переменная конфига  валидации
+const validateConfiguration = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__fill",
+  submitButtonSelector: ".popup__sumbit",
+  inactiveButtonClass: "popup__submit_disabled",
+  inputErrorClass: "popup__fill_error",
+  errorClass: "popup__fill-error_active",
+};
+//---------------------------------------------------------------------------------------------------------------//
+// функция очистки полей валидации
 const cleanValidationFields = (fill) => {
   fill
     .querySelectorAll(".popup__fill_error")
@@ -49,147 +76,103 @@ const cleanValidationFields = (fill) => {
     .querySelectorAll(".popup__fill-error_active")
     .forEach((fill) => fill.classList.remove("popup__fill-error_active"));
 };
-
 //---------------------------------------------------------------------------------------------------------------//
-//функция отображения карточек тимплейт
-function createCard(elementName, elementLink) {
-  const cardElement = initialCardsTemplate
-    .querySelector(".element__item-grid")
-    .cloneNode(true); // клонирование разметки
-  const elementTitleTmplt = cardElement.querySelector(".element__title-grid"); // переменная разметки тимплейт  Н2
-  const elementImageTmplt = cardElement.querySelector(".element__image-grid"); // переменная тимплейт img
-  elementTitleTmplt.textContent = elementName; //.textContent = element.name; // добавление в разметку текст
-  elementImageTmplt.alt = elementName; //.alt = element.link; // добавление в alt текста с Титла
-  elementImageTmplt.src = elementLink; //.src = element.link; // добавление в разметку картинку
-
-  cardElement
-    .querySelector(".element__like-buttone")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like-active");
-    }); //  лайк Актив
-
-  cardElement
-    .querySelector(".element__delete-buttone")
-    .addEventListener("click", function (evt) {
-      evt.target.closest(".element__item-grid").remove();
-    }); //удаление карточек
-
-  elementImageTmplt.addEventListener("click", () => {
-    openPopupFullImage(elementImageTmplt.src, elementTitleTmplt.textContent);
-  }); //вызов на клик - полномаштабная картинка
-  return cardElement; //завершает выполнение текущей функции и возвращает её значение
+// попапы
+function activePopup(popupAll) {
+  const list = Array.from(popupAll);
+  return list.find((popupAll) => {
+    if (popupAll.classList.contains("popup_opened")) {
+      return popupAll;
+    }
+  });
 }
-
-// переборка массива методом  цикла forEach
-initialCards.forEach((element) => {
-  const cardElement = createCard(element.name, element.link); // обьявляю переменную массива  которая равна  функции тимплейт с учеетом элементов массива
-  addCard(cardElement); // вызов функции добавления карточки в которую перемещается функция  тимплейт с cloneNode
-});
-
+// закрыть попап
+function closePopupEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(activePopup(popupAll));
+  }
+}
+// открыть попап
+function openPopup(targetPopup) {
+  targetPopup.classList.add("popup_opened");
+  document.addEventListener("keyup", closePopupEsc);
+}
+// закрыть попап по эскп
+function closePopup(targetPopup) {
+  if (targetPopup !== undefined) {
+    targetPopup.classList.remove("popup_opened");
+    document.removeEventListener("keyup", closePopupEsc);
+  }
+}
+// тут уже надоело коменты писать
+function handlePopupClose(evt) {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__close")
+  ) {
+    closePopup(activePopup(popupAll));
+  }
+}
 //---------------------------------------------------------------------------------------------------------------//
-
-//функция редактирования формы edit
-function handleFormSubmitEdit(evt) {
+function openPopupFullImage(cardName, cardLink) {
+  popupModalImg.src = cardLink;
+  popupModalImg.alt = cardName;
+  popupTextImg.textContent = cardName;
+  openPopup(popupFull);
+}
+//---------------------------------------------------------------------------------------------------------------//
+function editProfile(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInputEdit.value;
   profileSubtitle.textContent = jobInputEdit.value;
-  closePopup(popupOpenEdit);
+  closePopup(popupEdit);
 }
-
 //---------------------------------------------------------------------------------------------------------------//
-
-// Вставляет узлы перед первым дочерним элементом узла add
-function addCard(cardElement) {
-  initialCardsList.prepend(cardElement);
+function enableValidation(forms, classConfiguration) {
+  forms.forEach((form) => {
+    const validateForm = new Validate(classConfiguration, form);
+    validateForm.enableValidation();
+  });
 }
-
-// функция добавления карточек в разметку  add
-function handleCardFormSubmitAdd(evt) {
+//---------------------------------------------------------------------------------------------------------------//
+function addCard(evt) {
   evt.preventDefault();
-  const card = createCard(nameInputAdd.value, linkInputAdd.value);
-  addCard(card);
-  const disableButtonAdd = evt.target.querySelector(".popup__sumbit-add");
-  invisibleButton(disableButtonAdd, "popup__submit_disabled");
-
+  const card = new Card(
+    { name: nameInputAdd.value, link: linkInputAdd.value },
+    "#grid-template",
+    openPopupFullImage
+  );
+  const newCard = card.createCard();
+  elementGrid.prepend(newCard);
+  evt.target.reset();
   closePopup(popupAdd);
 }
 
-//---------------------------------------------------------------------------------------------------------------//
-
-// функция открфтия полномаштабной картинки
-function openPopupFullImage(elementLink, elementName) {
-  popupModalImg.src = elementLink;
-  popupTextImg.textContent = elementName;
-  popupModalImg.alt = elementName;
-  openPopup(popupFull);
-}
-
-//---------------------------------------------------------------------------------------------------------------//
-
-//единые функции всех popap
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keyup", closePopupEsc);
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keyup", closePopupEsc);
-}
-//функция закрытия по ESC
-function closePopupEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector(".popup_opened"));
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------//
-
-// вызов  сохранение edit
-popupFormEdit.addEventListener("submit", handleFormSubmitEdit);
-// вызов окна открытие , закрытие , добавление add
-popupFormAdd.addEventListener("submit", handleCardFormSubmitAdd);
-
-//---------------------------------------------------------------------------------------------------------------//
-
-//функция открытия попап edit
-profileButtoneEdit.addEventListener("click", () => {
-  cleanValidationFields(popupFormEdit);
-  nameInputEdit.value = profileTitle.textContent;
-  jobInputEdit.value = profileSubtitle.textContent;
-  openPopup(popupOpenEdit);
+initialCards.forEach((cardData) => {
+  const card = new Card(cardData, "#grid-template", openPopupFullImage);
+  const cardElement = card.createCard();
+  elementGrid.append(cardElement);
 });
-
-//функция открытия popup add
+//---------------------------------------------------------------------------------------------------------------//
+popupAll.forEach((popupAll) => {
+  popupAll.addEventListener("click", handlePopupClose);
+});
+//---------------------------------------------------------------------------------------------------------------//
 profileButtoneAdd.addEventListener("click", () => {
   cleanValidationFields(popupFormAdd);
   openPopup(popupAdd);
   popupFormAdd.reset();
 });
-
 //---------------------------------------------------------------------------------------------------------------//
-
-//слушатель закрытия попап edit
-popupCloseEdit.addEventListener("click", () => {
-  closePopup(popupOpenEdit);
+profileButtoneEdit.addEventListener("click", () => {
+  cleanValidationFields(popupFormEdit);
+  nameInputEdit.value = profileTitle.textContent;
+  jobInputEdit.value = profileSubtitle.textContent;
+  openPopup(popupEdit);
 });
-
-//слушатель закрытия.крестик popup add
-popupCloseAdd.addEventListener("click", () => {
-  closePopup(popupAdd);
-});
-
-//слушатель закрытия.крестик popup img
-popupCloseImg.addEventListener("click", () => {
-  closePopup(popupFull);
-});
-//слушатель закрытия по овер
-popupAll.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
-    if (evt.target === popup) {
-      closePopup(popup);
-    }
-  });
-});
-
+//---------------------------------------------------------------------------------------------------------------//
+popupFormEdit.addEventListener("submit", editProfile);
+popupFormAdd.addEventListener("submit", addCard);
+//---------------------------------------------------------------------------------------------------------------//
+enableValidation([popupFormAdd, popupFormEdit], validateConfiguration);
 //---------------------------------------------------------------------------------------------------------------//
