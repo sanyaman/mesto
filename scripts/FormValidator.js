@@ -3,6 +3,12 @@ export default class FormValidator {
   constructor(classConfiguration, validateElement) {
     this._configuration = classConfiguration;
     this._element = validateElement;
+    this.inputLists = Array.from(
+      this._element.querySelectorAll(this._configuration.inputSelector)
+    );
+    this.buttonElement = this._element.querySelector(
+      this._configuration.submitButtonSelector
+    );
   }
   //---------------------------------------------------------------------------------------------------------------//
   //показать спан
@@ -35,52 +41,49 @@ export default class FormValidator {
   }
   //---------------------------------------------------------------------------------------------------------------//
   // проверка  Службы безопасности Сбербанка -  доступ отказан
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this.inputLists.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
   // меня не видно
-  _invisibleButton = (buttonElement) => {
-    buttonElement.classList.add(this._configuration.inactiveButtonClass);
-    buttonElement.setAttribute("disabled", true);
+  _disableButton = () => {
+    this.buttonElement.classList.add(this._configuration.inactiveButtonClass);
+    this.buttonElement.disabled = true;
   };
   // меня видно
-  _visibleButton = (buttonElement) => {
-    buttonElement.classList.remove(this._configuration.inactiveButtonClass);
-    buttonElement.removeAttribute("disabled");
+  _activateButton = () => {
+    this.buttonElement.classList.remove(
+      this._configuration.inactiveButtonClass
+    );
+    this.buttonElement.disabled = false;
   };
+
   // выбор кнопки с Газом/ без Газа
-  _toggleButtonState = (inputList, buttonElement) => {
-    if (this._hasInvalidInput(inputList)) {
-      this._invisibleButton(buttonElement);
+  _toggleButtonState = () => {
+    if (this._hasInvalidInput()) {
+      this._disableButton();
     } else {
-      this._visibleButton(buttonElement);
+      this._activateButton();
     }
   };
   //---------------------------------------------------------------------------------------------------------------//
   // прошлушка Яндекс Алиса
   _setEventListeners() {
-    const inputList = Array.from(
-      this._element.querySelectorAll(this._configuration.inputSelector)
-    );
-    const buttonElement = this._element.querySelector(
-      this._configuration.submitButtonSelector
-    );
-    this._toggleButtonState(inputList, buttonElement);
-    this._element.addEventListener("reset", () => {
-      setTimeout(() => {
-        this._toggleButtonState(inputList, buttonElement);
-      });
-    });
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState();
+    this.inputLists.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       });
     });
   }
-
+  resetValidation() {
+    this._toggleButtonState();
+    this.inputLists.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
   enableValidation() {
     this._setEventListeners();
   }
