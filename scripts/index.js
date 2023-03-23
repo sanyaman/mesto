@@ -156,7 +156,7 @@ function appendCard(evt) {
 
 function createCard(cardData) {
   const card = new Card(cardData, "#grid-template", openPopupFullImage);
-  const cardElement = card.cgenerateCard();
+  const cardElement = card.generateCard();
   return cardElement;
 }
 

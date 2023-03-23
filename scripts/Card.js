@@ -32,7 +32,7 @@ export default class Card {
     );
   }
   //функция отображения карточек тимплейт
-  cgenerateCard() {
+  generateCard() {
     const cardElement = this._element
       .querySelector(".element__item-grid")
       .cloneNode(true);
