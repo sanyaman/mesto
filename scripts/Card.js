@@ -1,48 +1,44 @@
 //---------------------------------------------------------------------------------------------------------------//
-//класс+конструктор карточек
 export default class Card {
-  constructor(data, templateSelector, openPopup) {
+  constructor(data, cardElement, openPopupFullImage) {
     this._name = data.name;
     this._link = data.link;
-    this._element = document.querySelector(templateSelector).content;
-    this._openPopupFullImage = openPopup;
+    this._cardElement = cardElement;
+    this._openPopupFullImage = openPopupFullImage
   }
-  //---------------------------------------------------------------------------------------------------------------//
-  //выбор иконки Лайк
-  _toggleLike(targetButtone) {
-    targetButtone.target.classList.toggle("element__like-active");
-  }
-  //---------------------------------------------------------------------------------------------------------------//
-  //выбор иконки яндекс
-  _deleteCard(targetButtone) {
-    const cardElement = targetButtone.target.closest(".element__item-grid");
-    cardElement.remove();
-  }
-  //---------------------------------------------------------------------------------------------------------------//
-  //слушатель карт
-  _setEventListeners(cardElement, imageElement) {
-    cardElement
-      .querySelector(".element__delete-buttone")
-      .addEventListener("click", (evt) => this._deleteCard(evt));
-    cardElement
-      .querySelector(".element__like-buttone")
-      .addEventListener("click", (evt) => this._toggleLike(evt));
-    imageElement.addEventListener("click", () =>
-      this._openPopupFullImage(this._name, this._link)
-    );
-  }
-  //функция отображения карточек тимплейт
-  generateCard() {
-    const cardElement = this._element
+  //вынес в отдельную функц
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._cardElement)
+      .content
       .querySelector(".element__item-grid")
       .cloneNode(true);
-    const imageElement = cardElement.querySelector(".element__image-grid");
-    const name = cardElement.querySelector(".element__title-grid");
-    imageElement.alt = this._name;
-    imageElement.src = this._link;
-    name.textContent = this._name;
-    this._setEventListeners(cardElement, imageElement);
-    return cardElement;
-  } 
+
+    return cardElement
+  }
+  // лайк актив 
+  _likeActive(targetButtone) {
+    targetButtone.target.classList.toggle("element__like-active");
+  }
+
+  //генер карт 
+  generateCard() {
+    this._element = this._getTemplate();
+    this._elementImage = this._element.querySelector(".element__image-grid");
+    this._elementLikeButtone = this._element.querySelector(".element__like-buttone");
+    this._elementDeleteButtone = this._element.querySelector(".element__delete-buttone");
+    this._elementImage.alt = this._name;
+    this._elementImage.src = this._link;
+    this._element.querySelector(".element__title-grid").textContent = this._name;
+    this._setEventListeners();
+    return this._element;
+  }
+  // прослушка
+  _setEventListeners() {
+    this._elementLikeButtone.addEventListener("click", evt => this._likeActive(evt));
+    this._elementDeleteButtone.addEventListener("click", () => this._element.remove());
+    this._elementImage.addEventListener("click", () => {
+    this._openPopupFullImage(this._name, this._link);
+    });
+  }
 }
-//---------------------------------------------------------------------------------------------------------------//

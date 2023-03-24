@@ -26,7 +26,7 @@ const popupModalImg = popupFull.querySelector(".popup__modal-img");
 const popupTextImg = popupFull.querySelector(".popup__text-img");
 //---------------------------------------------------------------------------------------------------------------//
 // прочие переменные
-const Allpopups = document.querySelectorAll(".popup");
+const allPopups = document.querySelectorAll(".popup");
 const elementGrid = document.querySelector(".element__grid");
 
 const formValidators = {};
@@ -70,29 +70,20 @@ const validateConfiguration = {
   errorClass: "popup__fill-error_active",
 };
 //---------------------------------------------------------------------------------------------------------------//
-// функция очистки полей валидации
-/*const cleanValidationFields = (fill) => {
-  fill
-    .querySelectorAll(".popup__fill_error")
-    .forEach((fill) => fill.classList.remove("popup__fill_error"));
-  fill
-    .querySelectorAll(".popup__fill-error_active")
-    .forEach((fill) => fill.classList.remove("popup__fill-error_active"));
-};*/
 //---------------------------------------------------------------------------------------------------------------//
 // попапы
-function getOpenedPopup(popups) {
-  const list = Array.from(popups);
-  return list.find((popups) => {
-    if (popups.classList.contains("popup_opened")) {
-      return popups;
+function getOpenedPopup(popup) {
+  const list = Array.from(popup);
+  return list.find((popup) => {
+    if (popup.classList.contains("popup_opened")) {
+      return popup;
     }
   });
 }
 // закрыть попап
 function closePopupEsc(evt) {
   if (evt.key === "Escape") {
-    closePopup(getOpenedPopup(Allpopups));
+    closePopup(getOpenedPopup(allPopups));
   }
 }
 // открыть попап
@@ -106,6 +97,7 @@ function closePopup(targetPopup) {
     targetPopup.classList.remove("popup_opened");
     document.removeEventListener("keyup", closePopupEsc);
   }
+  
 }
 // тут уже надоело коменты писать
 function handlePopupClose(evt) {
@@ -113,7 +105,7 @@ function handlePopupClose(evt) {
     evt.target.classList.contains("popup") ||
     evt.target.classList.contains("popup__close")
   ) {
-    closePopup(getOpenedPopup(Allpopups));
+    closePopup(getOpenedPopup(allPopups));
   }
 }
 //---------------------------------------------------------------------------------------------------------------//
@@ -166,8 +158,8 @@ initialCards.forEach((cardData) => {
 });
 
 //---------------------------------------------------------------------------------------------------------------//
-Allpopups.forEach((popups) => {
-  popups.addEventListener("click", handlePopupClose);
+allPopups.forEach((popup) => {
+  popup.addEventListener("click", handlePopupClose);
 });
 //---------------------------------------------------------------------------------------------------------------//
 profileButtoneAdd.addEventListener("click", () => {
