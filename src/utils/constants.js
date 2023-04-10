@@ -1,28 +1,35 @@
 //переменная массивакарточек
+import zebraFish from "../image/1.jpg";
+import angelFish from "../image/2.jpg";
+import butterflyFish from "../image/3.jpg";
+import butterflymaskFish from "../image/4.jpg";
+import wrasseFish from "../image/7.jpg";
+import mandarinFish from "../image/8.jpg";
+
 export const initialCards = [
     {
         name: "Жёлтая Зебрасома",
-        link: "https://sanyaman.github.io/mesto/image/1.jpg",
+        link: zebraFish
     },
     {
         name: "Рыба ангел",
-        link: "https://sanyaman.github.io/mesto/image/4.jpg",
+        link: angelFish
     },
     {
         name: "Бабочка Пинцет",
-        link: "https://sanyaman.github.io/mesto/image/3.jpg",
+        link: butterflyFish
     },
     {
         name: "Губан лавандовый",
-        link: "https://sanyaman.github.io/mesto/image/7.jpg",
+        link: wrasseFish
     },
     {
         name: "Бабочка Масковая",
-        link: "https://sanyaman.github.io/mesto/image/2.jpg",
+        link: butterflymaskFish
     },
     {
         name: "Мандаринка Глянцевая",
-        link: "https://sanyaman.github.io/mesto/image/8.jpg",
+        link: mandarinFish
     },
 ];
 
