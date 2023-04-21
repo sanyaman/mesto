@@ -1,0 +1,12 @@
+.profile__avatar-pen{
+    border-radius: 50%;
+    background-image: url(../../../image/icon-avatar.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000;
+    object-fit: cover;
+    height: 120px;
+    width: 120px;
+    margin-right: 30px;
+    
+  }

@@ -1,0 +1,8 @@
+.element__counter {
+    font-family: Inter,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 15.74px;
+    margin-top: 3px;
+    transition: .3s;
+}
+

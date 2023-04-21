@@ -1,0 +1,14 @@
+.popup__container-confirmation {
+    background-color: #ffffff;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    width: 430px;
+
+  }
+  @media screen and (max-width: 610px) {
+    .popup__container-confirmation {
+      width: 282px;
+    }
+  }
+  

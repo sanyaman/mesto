@@ -1,53 +1,77 @@
-export class Card {
-    constructor({ name, link }, cardSelector, handleCardClick) {
-        this._name = name;
-        this._link = link;
-        this._cardSelector = cardSelector;
+export default class Card {
+    constructor({ data, handleCardClick, handleLikeClick, handleDeleteIconClick }, templateSelector) {
+        this._name = data.name;
+        this._link = data.link;
+        this._cardId = data._id;
+        this._ownerId = data.owner._id;
+        this._likes = data.likes;
         this._handleCardClick = handleCardClick;
+        this._handleLikeClick = handleLikeClick;
+        this._handleDeleteIconClick = handleDeleteIconClick;
+        this._element = document.querySelector(templateSelector).content;
+        this._liked = false;
+        this._owned = false;
+
     }
 
-    _getTemplate() {
-        const cardElement = document
-            .querySelector(this._cardSelector)
-            .content
-            .querySelector('.element__item-grid')
-            .cloneNode(true);
-
-        return cardElement;
+    updateLikes(data, user) {
+        this._likes = data.likes;
+        this._hasUserLike(user)
+        this._likeCount.textContent = data.likes.length;
     }
 
-    _likeCard(evt) {
-        evt.target.classList.toggle('element__like-active');
+    _addLike() {
+        this._likeBtn.classList.add('element__like-active');
+        this._liked = true;
+    }
+    _removeLike() {
+        this._likeBtn.classList.remove('element__like-active');
+        this._liked = false;
+
     }
 
-    _deleteCard() {
-        this._element.remove();
+    _hasUserLike(userId) {
+        if (this._likes.some((owner) => {
+            return owner._id === userId
+        })) {
+            this._addLike();
+            return
+        }
+        this._removeLike();
     }
 
-    generateCard() {
-        this._element = this._getTemplate();
-        this._setEventListeners();
-        this._element.querySelector('.element__title-grid').textContent = this._name;
-        const imageAltSrc = this._element.querySelector('.element__image-grid');
-        imageAltSrc.src = this._link;
-        imageAltSrc.alt = this._name;
-        return this._element;
+    _isOwner(userId) {
+        if (userId === this._ownerId) {
+            this._owned = true;
+            return true;
+        }
+        return false
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__image-grid').addEventListener('click', () => {
-            this._handleCardClick(this._element);
-        });
+        if (this._owned) {
+            this._card.querySelector('.photo__delete-btn').addEventListener('click', () => { this._handleDeleteIconClick(this._card, this._cardId) })
+        }
+        this._likeBtn.addEventListener('click', () => { this._handleLikeClick(this._liked, this._cardId) });
+        this._image.addEventListener('click', () => this._handleCardClick({ image: this._link, description: this._name }));
+    }
 
-        this._element.querySelector('.element__like-buttone').addEventListener('click', (evt) => {
-            this._likeCard(evt);
-        });
-
-        this._element.querySelector('.element__delete-buttone').addEventListener('click', () => {
-            this._deleteCard();
-        });
-
+    createCard(userId) {
+        this._card = this._element.querySelector('.element__item-grid').cloneNode(true);
+        if (!this._isOwner(userId)) {
+            this._card.querySelector('.element__delete-buttone').remove();
+        }
+        this._image = this._card.querySelector('.element__image-grid');
+        this._likeBtn = this._card.querySelector('.element__like-buttone');
+        const name = this._card.querySelector('.element__title-grid');
+        this._likeCount = this._card.querySelector('.element__counter');
+        this._image.src = this._link;
+        this._image.alt = this._name;
+        name.textContent = this._name;
+        this._likeCount.textContent = this._likes.length;
+        this._hasUserLike(userId);
+        this._setEventListeners();
+        return this._card;
     }
 
 }
-

@@ -1,0 +1,17 @@
+.popup__profile-name-confirmation {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 34px 0 0 0;
+    width: 100%;
+  }
+  @media screen and (max-width: 610px) {
+    .popup__profile-name-confirmation {
+      font-size: 18px;
+      line-height: 22px;
+      margin: 25px 0 0 0;
+      max-width: 238px;
+    }
+  }

@@ -1,5 +1,36 @@
 //переменная массивакарточек
-import zebraFish from "../image/1.jpg";
+const profile = document.querySelector(".profile");
+const profileName = profile.querySelector(".profile__title");
+const profileActivity = profile.querySelector(".profile__subtitle");
+const editBtn = profile.querySelector(".profile__button-edit");
+const addBtn = profile.querySelector(".profile__button-add");
+const editAvatar = profile.querySelector(".profile__avatar-pen");
+const profileAvatar = editAvatar.querySelector(".profile__avatar");
+const formValidators = {};
+
+const validateConfig = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__fill",
+    submitButtonSelector: ".popup__sumbit",
+    inputErrorClass: "popup__fill_error",
+    errorClass: "popup__fill-error_active",
+    inactiveButtonClass: "popup__submit_disabled",
+};
+
+export {
+    validateConfig,
+    addBtn,
+    editBtn,
+    formValidators,
+    profileName,
+    profileActivity,
+    editAvatar,
+    profileAvatar,
+}
+
+
+
+/* import zebraFish from "../image/1.jpg";
 import angelFish from "../image/2.jpg";
 import butterflyFish from "../image/3.jpg";
 import butterflymaskFish from "../image/4.jpg";
@@ -32,23 +63,4 @@ export const initialCards = [
         link: mandarinFish
     },
 ];
-
-export const formEditProfile = document.querySelector(".popup__form-edit");
-export const formAddCardValidator = document.querySelector(".profile__button-add");
-export const formEditCards = document.querySelector(".popup__form-add");
-
-
-
-export const formEditProfileValidator = document.querySelector(".profile__button-edit");
-export const config = {
-    formSelector: ".popup__form",
-    inputSelector: ".popup__fill",
-    submitButtonSelector: ".popup__sumbit",
-    inputErrorClass: "popup__fill_error",
-    errorActiveClass: "popup__fill-error_active",
-    infoName: ".profile__title",
-    infoJob: ".profile__subtitle",
-    elements: ".element__grid",
-    inactiveButtonClass: ".popup__submit_disabled"
-};
-
+*/
