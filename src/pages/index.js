@@ -8,7 +8,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupDelete from "../components/PopupDelete.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
-import Api from "../components/Api.js";
+import { Api } from "../components/Api.js";
 
 function activateValidation(classConfiguration) {
   const formList = Array.from(document.querySelectorAll(classConfiguration.formSelector));

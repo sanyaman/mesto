@@ -50,7 +50,7 @@ export default class Card {
 
     _setEventListeners() {
         if (this._owned) {
-            this._card.querySelector('.photo__delete-btn').addEventListener('click', () => { this._handleDeleteIconClick(this._card, this._cardId) })
+            this._card.querySelector('.element__delete-buttone').addEventListener('click', () => { this._handleDeleteIconClick(this._card, this._cardId) })
         }
         this._likeBtn.addEventListener('click', () => { this._handleLikeClick(this._liked, this._cardId) });
         this._image.addEventListener('click', () => this._handleCardClick({ image: this._link, description: this._name }));
