@@ -44,8 +44,11 @@
 .popup__container-confirmation{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);position:relative;width:430px}@media screen and (max-width:610px){.popup__container-confirmation{width:282px}}
 .popup__profile-name-confirmation{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:34px 0 0;width:100%}@media screen and (max-width:610px){.popup__profile-name-confirmation{font-size:18px;line-height:22px;margin:25px 0 0;max-width:238px}}
 .popup__sumbit-confirmation{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-style:normal;font-weight:400;height:50px;line-height:22px;margin:38px 0 30px;outline:none;padding:0;text-align:center;transition:visibility .3s,opacity .4s linear;width:358px}.popup__sumbit-confirmation:hover{opacity:.8}.popup__sumbit-confirmation:disabled{background:#fff;border:1px solid #000;border-radius:2px;box-sizing:border-box;color:#000;cursor:pointer;opacity:.2}@media screen and (max-width:610px){.popup__sumbit-confirmation{font-size:14px;height:46px;line-height:17px;margin:30px 0 25px;width:238px}}
-.profile__avatar-pen{background-color:#000;background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;border-radius:50%;height:120px;margin-right:30px;-o-object-fit:cover;object-fit:cover;width:120px}
+.profile__avatar-pen{background-color:#000;background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;border-radius:50%;height:120px;margin-right:30px;-o-object-fit:cover;object-fit:cover;width:120px}@media screen and (max-width:910px){.profile__avatar-pen{margin:0}}
 .element__like-label{align-items:center;display:flex;flex-direction:column}
 .element__counter{font-family:Inter,Arial,sans-serif;font-size:13px;line-height:15.74px;margin-top:3px;transition:.3s}
 .content{min-height:73vh}
+.popup__sumbit-profile{margin:0}
+.popup__container-profile{height:272px;width:430px}@media screen and (max-width:610px){.popup__container-profile{width:282px}}
+
 
