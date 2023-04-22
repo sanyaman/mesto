@@ -10,3 +10,8 @@
     margin-right: 30px;
     
   }
+  @media screen and (max-width: 910px) {
+.profile__avatar-pen {
+    margin: 0;
+}
+}

@@ -55,3 +55,6 @@
 @import url(../blocks/element/__counter/element__counter.css);
 /* main content*/
 @import url(../blocks/content/content.css);
+@import url(../blocks/popup/__sumbit-profile/popup__sumbit-profile.css);
+@import url(../blocks/popup/__container-profile/popup__container-profile.css);
+@import url(../blocks/popup/__form-profile/popup__form-profile.css);

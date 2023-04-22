@@ -73,4 +73,5 @@ export default class Card {
         this._setEventListeners();
         return this._card;
     }
+
 }
