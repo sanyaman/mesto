@@ -68,7 +68,7 @@
   ![image](https://media.istockphoto.com/id/1271756072/vector/social-media-icon-thumbs-up-repost-sharing-like-comment-vector-on-isolated-white-background.jpg?s=612x612&w=0&k=20&c=Adr8nMysFahJXGNI7Br3YJEBDmJoJXJ-ERTMKEFvIHc=)
  
 
-
+Проект завершен.
  
 
 © by Sanyaman
